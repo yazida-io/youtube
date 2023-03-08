@@ -1,0 +1,44 @@
+@import './base.css';
+
+h1 {
+  font-size: 5rem;
+  color: #fff;
+  text-shadow: 0 0 10px #b53a3ab0;
+}
+main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: rgb(180, 58, 166);
+  background: linear-gradient(
+    90deg,
+    rgb(58, 113, 180) 0%,
+    rgba(253, 100, 29, 0.81) 70%,
+    rgba(252, 69, 197, 0.81) 110%
+  );
+}
+
+button {
+  border: 2px solid #230e99;
+  outline: 0;
+  padding: 0.7rem;
+  background: #230e99;
+  font-size: 1.5rem;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
+  color: white;
+  text-align: center;
+  cursor: pointer;
+}
+input {
+  border: 2px solid #230e99;
+  outline: 0;
+  padding: 0.7rem;
+  background: white;
+  font-size: 1.5rem;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
+  color: #4e0404;
+  text-align: center;
+}
