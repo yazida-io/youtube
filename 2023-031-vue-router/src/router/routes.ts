@@ -5,13 +5,21 @@ import User from "@/pages/User.vue";
 // @ts-ignore
 import Users from "@/pages/Users.vue";
 import ShowFile from "@/pages/ShowFile.vue";
+import UsersLayout from "@/components/UsersLayout.vue";
 
 const routes: RouteRecordRaw[] = [
     {name: 'home', path: "/", alias: '/home', component: Home},
     {name: 'about', path: "/about", component: About},
-    {name: "users", path: "/users", component: Users, sensitive: true},
-    {name: "users.show", path: "/users/:user(\\d+)", component: User, props: true},
-    {name: 'file', path: "/files/:file+", component: ShowFile },
+    {
+        path: "/users",
+        component: UsersLayout,
+        meta: { layout: 'simple-layout' },
+        children: [
+            {name: "users", path: "", component: Users,},
+            {name: "users.show", path: ":user(\\d+)", component: User, props: true},
+        ]
+    },
+    {name: 'file', path: "/files/:file+", component: ShowFile},
     {path: "/:pathMatch(.*)*", redirect: {name: "home"}}
 ]
 

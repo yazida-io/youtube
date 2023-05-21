@@ -1,14 +1,7 @@
 <template>
-    <h1>Users</h1>
-    <p>this is the users page</p>
-
-    <ul class="border">
-        <li
-                class="border-2"
-                v-for="({ name, code: user }) in users" :key="user">
-            <router-link
-                    :to="{ name: 'users.show', params: { user } }"
-            >
+    <ul class="border w-[700px]">
+        <li class="border-2" v-for="({ name, code: user }) in users" :key="user">
+            <router-link :to="{ name: 'users.show', params: { user } }" class="block p-2 hover:bg-blue-400/20">
                 {{ name }}
             </router-link>
         </li>
