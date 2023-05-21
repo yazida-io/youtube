@@ -7,8 +7,8 @@
 </template>
 <script lang="ts" setup>
 const icon = '🚏';
-const title = 'Vue Router (3)';
-const subtitle = 'Layout & Nested Routes';
+const title = 'Vue Router (4)';
+const subtitle = 'Middleware & Navigation Guards';
 </script>
 <style scoped>
 .page {

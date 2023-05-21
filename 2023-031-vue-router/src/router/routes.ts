@@ -2,18 +2,18 @@ import Home from "@/pages/Home.vue";
 import About from "@/pages/About.vue";
 import type {RouteRecordRaw} from "vue-router";
 import User from "@/pages/User.vue";
-// @ts-ignore
 import Users from "@/pages/Users.vue";
 import ShowFile from "@/pages/ShowFile.vue";
 import UsersLayout from "@/components/UsersLayout.vue";
+import Login from "@/pages/Login.vue";
 
 const routes: RouteRecordRaw[] = [
-    {name: 'home', path: "/", alias: '/home', component: Home},
+    {name: 'login', path: "/login", component: Login, meta: {layout: 'simple-layout'}},
+    {name: 'home', path: "/", alias: '/home', component: Home, meta: {middleware: 'auth'}},
     {name: 'about', path: "/about", component: About},
     {
         path: "/users",
         component: UsersLayout,
-        meta: { layout: 'simple-layout' },
         children: [
             {name: "users", path: "", component: Users,},
             {name: "users.show", path: ":user(\\d+)", component: User, props: true},

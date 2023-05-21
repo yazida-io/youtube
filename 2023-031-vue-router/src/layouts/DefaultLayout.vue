@@ -1,5 +1,12 @@
 <script setup lang="ts">
-defineProps<{ links: {text: string, name: string}[] }>()
+import {useRouter} from "vue-router";
+
+defineProps<{ links: { text: string, name: string }[] }>()
+const router = useRouter()
+const logout = () => {
+    localStorage.removeItem('token')
+    router.push({name: 'login'})
+}
 </script>
 
 <template>
@@ -13,10 +20,14 @@ defineProps<{ links: {text: string, name: string}[] }>()
         >
             {{ text }}
         </router-link>
+
+        <button class="flex-1 text-center p-2 text-white shadow-xl" @click="logout">
+            Logout
+        </button>
     </nav>
     <main class="flex-center w-full h-screen">
         <div class="bg-indigo-950/20 w-[900px] h-[500px]">
-            <router-view />
+            <router-view/>
         </div>
     </main>
 </template>

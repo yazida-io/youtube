@@ -1,5 +1,5 @@
 <template>
-    <div class="bg-pink-300">
+    <div class="flex-center h-screen w-screen overflow-hidden">
         <router-view/>
     </div>
 </template>
