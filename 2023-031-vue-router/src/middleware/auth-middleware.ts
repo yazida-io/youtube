@@ -5,11 +5,9 @@ export default function authMiddleware(to: RouteLocationNormalized, from: RouteL
 
     if (to.name !== 'login' && !token) {
         next({name: 'login'})
-    }
-
-    if (to.name === 'login' && token) {
+    }else if (to.name === 'login' && token) {
         next({name: 'home'})
+    }else {
+        next()
     }
-
-    next()
 }

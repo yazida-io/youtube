@@ -25,9 +25,20 @@ const logout = () => {
             Logout
         </button>
     </nav>
-    <main class="flex-center w-full h-screen">
-        <div class="bg-indigo-950/20 w-[900px] h-[500px]">
-            <router-view/>
-        </div>
+    <main class="flex-center w-screen h-screen overflow-hidden">
+        <router-view v-slot="{ Component }">
+            <transition
+                mode="out-in"
+                    class="transform"
+                    enter-active-class="transition ease-out duration-400"
+                    leave-active-class="transition ease-out duration-200"
+                    enter-from-class="opacity-0 translate-x-full"
+                    enter-to-class="opacity-100 translate-x-0"
+                    leave-from-class="opacity-100 translate-x-0"
+                    leave-to-class="opacity-0 -translate-x-full"
+            >
+                <component :is="Component"/>
+            </transition>
+        </router-view>
     </main>
 </template>

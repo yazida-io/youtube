@@ -1,6 +1,11 @@
 <script setup lang="ts">
+import {useRouter} from "vue-router";
+
+const router = useRouter()
+
 const authenticate = () => {
     localStorage.setItem('token', '123')
+    router.push({name: 'home'})
 }
 </script>
 
