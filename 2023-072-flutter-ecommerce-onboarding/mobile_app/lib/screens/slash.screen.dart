@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:loading_indicator/loading_indicator.dart';
-import 'package:mobile_app/screens/home.screen.dart';
+import 'package:mobile_app/screens/main.dart';
 import 'package:mobile_app/screens/onboarding.screen.dart';
 import 'package:mobile_app/services/auth.service.dart';
 
@@ -21,7 +21,7 @@ class _SlashScreenState extends State<SlashScreen> {
 
     AuthService.check().then((value) {
       if (value) {
-        Navigator.pushReplacementNamed(context, HomeScreen.routeName);
+        Navigator.pushReplacementNamed(context, MainScreen.routeName);
       } else {
         Navigator.pushReplacementNamed(context, Onboarding.routeName);
       }

@@ -3,7 +3,7 @@ import 'package:mobile_app/common/logo.widget.dart';
 import 'package:mobile_app/screens/sign-up.screen.dart';
 import 'package:mobile_app/services/auth.service.dart';
 
-import 'home.screen.dart';
+import 'main.dart';
 
 class SignInScreen extends StatefulWidget {
   static const routeName = 'sign-in';
@@ -104,7 +104,7 @@ class _SignInScreenState extends State<SignInScreen> {
                         if (value) {
                           Navigator.pushReplacementNamed(
                             context,
-                            HomeScreen.routeName,
+                            MainScreen.routeName,
                           );
                           return;
                         }

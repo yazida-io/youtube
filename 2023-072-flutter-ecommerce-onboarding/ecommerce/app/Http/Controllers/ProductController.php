@@ -2,14 +2,21 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        return Product::all();
+        $category = $request->query('category');
+
+        if ($category) {
+            return Category::where('code', $category)->firstOrFail()->products;
+        }
+
+        return Product::paginate(10);
     }
 
     public function store(Request $request)
