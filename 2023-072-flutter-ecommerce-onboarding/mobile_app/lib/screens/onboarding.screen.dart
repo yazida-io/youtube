@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:mobile_app/screens/sign-in.screen.dart';
 import 'package:mobile_app/screens/sign-up.screen.dart';
 
@@ -17,24 +18,24 @@ class _OnboardingState extends State<Onboarding> {
 
   final _pageContents = [
     (
-      'A Shop in your pocket',
-      "We're very lucky to find you! With Shopy we can save your lovely time.",
-      Colors.deepPurple
+      'Explore Endless Possibilities',
+      "Experience a seamless shopping journey with Yazida. Discover a wide range of products and enjoy personalized recommendations.",
+      'onboarding-1.png'
     ),
     (
-      'A Shop in your pocket',
-      "We're very lucky to find you! With Shopy we can save your lovely time.",
-      Colors.indigoAccent
+      'Uncover Unique Treasures',
+      "Dive into our diverse collection of fashion, electronics, home decor, and more. Find inspiration for your next purchase.",
+      'onboarding-2.png'
     ),
     (
-      'A Shop in your pocket',
-      "We're very lucky to find you! With Shopy we can save your lovely time.",
-      Colors.blueAccent
+      'Shop with Confidence',
+      "Simplify your shopping experience with secure checkout and hassle-free payments for swift delivery.",
+      'onboarding-3.png'
     ),
     (
-      'A Shop in your pocket',
-      "We're very lucky to find you! With Shopy we can save your lovely time.",
-      Colors.deepOrange
+      'Tailored Just for You',
+      "Enjoy curated recommendations based on your preferences, browsing history, and previous purchases. Discover new brands and related products.",
+      'onboarding-4.png'
     ),
   ];
 
@@ -65,20 +66,26 @@ class _OnboardingState extends State<Onboarding> {
 
                     return Column(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      crossAxisAlignment: CrossAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        Container(
+                        SizedBox(
                           height: 300,
                           width: double.infinity,
-                          color: image,
+                          child: Image.asset(
+                            'assets/images/$image',
+                            fit: BoxFit.contain,
+                          ),
                         ),
                         Text(
                           title,
+                          textAlign: TextAlign.center,
                           style: const TextStyle(
-                              fontSize: 30, color: Colors.deepPurple),
+                              fontSize: 30, color: Colors.deepPurple,
+                          ),
                         ),
                         Text(
                           description,
+                          textAlign: TextAlign.center,
                           style: const TextStyle(
                             fontSize: 19,
                             color: Colors.black45,

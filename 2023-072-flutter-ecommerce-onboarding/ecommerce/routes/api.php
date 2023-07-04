@@ -1,6 +1,9 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\UsersController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -15,7 +18,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::post('/login', [AuthController::class, 'login']);
+Route::post('login', [AuthController::class, 'login']);
+Route::post('register', [UsersController::class, 'store']);
+Route::apiResource('products', ProductController::class);
+
+Route::apiResource('categories', CategoryController::class);
+Route::get('categories/{category:code}/products', [CategoryController::class, 'products']);
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();

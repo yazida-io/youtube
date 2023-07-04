@@ -1,0 +1,27 @@
+[
+    {
+        "code": "vetements",
+        "name": "Vêtements",
+        "image": "https://m.media-amazon.com/images/I/51VF0R46LjL._AC_UX679_.jpg"
+    },
+    {
+        "code": "chaussures",
+        "name": "Chaussures",
+        "image": "https://m.media-amazon.com/images/I/81pWXSvdKUL._AC_UX625_.jpg"
+    },
+    {
+        "code": "montres",
+        "name": "Montres",
+        "image": "https://m.media-amazon.com/images/I/612qOhyT7TL._AC_UX522_.jpg"
+    },
+    {
+        "code": "sacs",
+        "name": "Sacs",
+        "image": "https://m.media-amazon.com/images/I/61bRfoWeDHL._AC_SX425_.jpg"
+    },
+    {
+        "code": "lunettes",
+        "name": "Lunettes",
+        "image": "https://m.media-amazon.com/images/I/61g-vEJI-FL._AC_UX679_.jpg"
+    }
+]
