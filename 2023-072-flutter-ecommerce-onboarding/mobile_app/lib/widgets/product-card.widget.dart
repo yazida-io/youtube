@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:mobile_app/screens/products.screen.dart';
 
 import '../models/product.model.dart';
+import '../screens/product.screen.dart';
 
 class ProductCard extends StatelessWidget {
   final Product product;
@@ -19,7 +21,11 @@ class ProductCard extends StatelessWidget {
         children: [
           GestureDetector(
             onTap: onTap ?? () {
-              print("Product ${product.name} is tapped");
+              Navigator.pushNamed(
+                context,
+                ProductScreen.routeName,
+                arguments: product,
+              );
             },
             child: Container(
               width: 200,

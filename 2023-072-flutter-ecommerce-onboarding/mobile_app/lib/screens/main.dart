@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mobile_app/screens/cart.screen.dart';
 import 'package:mobile_app/screens/home.screen.dart';
 import 'package:mobile_app/screens/onboarding.screen.dart';
 
@@ -17,7 +18,7 @@ class _MainScreenState extends State<MainScreen> {
   int _currentIndex = 0;
   final _pages = [
     const HomeScreen(),
-    const HomeScreen(),
+    const CartScreen(),
     const HomeScreen(),
   ];
 

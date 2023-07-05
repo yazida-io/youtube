@@ -2,6 +2,7 @@ class Product {
   final String code;
   final String name;
   final String description;
+  bool favorite = false;
   final dynamic price;
   final List images;
 
