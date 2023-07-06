@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:mobile_app/models/cart.model.dart';
 import 'package:mobile_app/screens/products.screen.dart';
+import 'package:provider/provider.dart';
 
 import '../models/product.model.dart';
 import '../screens/product.screen.dart';
@@ -47,7 +49,7 @@ class ProductCard extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   TextButton(
-                    onPressed: () {},
+                    onPressed: () => Provider.of<Cart>(context, listen: false).toggleFavorite(product),
                     child: const Padding(
                       padding: EdgeInsets.all(1.0),
                       child: Icon(

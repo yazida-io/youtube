@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:mobile_app/models/cart.model.dart';
 import 'package:provider/provider.dart';
 
 import '../models/product.model.dart';
+import 'checkout.screen.dart';
 
 class CartScreen extends StatefulWidget {
   static const routeName = 'cart';
@@ -23,7 +25,6 @@ class _CartScreenState extends State<CartScreen> {
       ),
       body: Consumer<Cart>(
         builder: (context, cart, child) {
-
           if (cart.products.isEmpty) {
             return const Center(
               child: Text('🛒', style: TextStyle(fontSize: 200)),
@@ -31,15 +32,116 @@ class _CartScreenState extends State<CartScreen> {
           }
 
           return ListView(
-              children: cart.products.map(
-            (record) {
-              final (product, quantity) = record;
-              return CartWidget(
-                product: product,
-                quantity: quantity,
-              );
-            },
-          ).toList());
+            children: [
+              Column(
+                children: cart.products.map(
+                  (record) {
+                    final (product, quantity) = record;
+                    return Slidable(
+                      key: ValueKey(product.code),
+                      startActionPane: ActionPane(
+                        motion: const ScrollMotion(),
+                        dragDismissible: false,
+                        children: [
+                          SlidableAction(
+                            onPressed: (BuildContext context) {
+                              Provider.of<Cart>(context, listen: false)
+                                  .removeProduct(product);
+                            },
+                            foregroundColor: Colors.redAccent,
+                            icon: Icons.delete,
+                            label: 'Delete',
+                          )
+                        ],
+                      ),
+                      endActionPane: ActionPane(
+                        motion: const ScrollMotion(),
+                        children: [
+                          SlidableAction(
+                            flex: 1,
+                            onPressed: (BuildContext context) {
+                              Provider.of<Cart>(context, listen: false)
+                                  .toggleFavorite(product);
+                            },
+                            foregroundColor: Colors.deepPurpleAccent,
+                            icon: Icons.favorite,
+                            label: 'Favorite',
+                          ),
+                        ],
+                      ),
+                      child: CartWidget(product: product, quantity: quantity),
+                    );
+                  },
+                ).toList(),
+              ),
+              const Divider(),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      const Text(
+                        'Tax(included)',
+                        style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      const SizedBox(height: 10),
+                      Text(
+                        '\$${(cart.total * 0.2).toStringAsFixed(2)}',
+                        style: const TextStyle(
+                          fontSize: 25,
+                          color: Colors.redAccent,
+                        ),
+                      ),
+                    ]),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      const Text(
+                        'Total',
+                        style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      const SizedBox(height: 10),
+                      Text(
+                        '\$${cart.total.toStringAsFixed(2)}',
+                        style: const TextStyle(
+                          fontSize: 30,
+                          color: Colors.redAccent,
+                        ),
+                      ),
+                    ]),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.redAccent,
+                    foregroundColor: Colors.white,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(7),
+                    ),
+                  ),
+                  onPressed: () {
+                    Navigator.of(context).pushNamed(CheckoutScreen.routeName);
+                  },
+                  child: const Padding(
+                    padding: EdgeInsets.all(8.0),
+                    child: Text('Checkout', style: TextStyle(fontSize: 20)),
+                  ),
+                ),
+              ),
+            ],
+          );
         },
       ),
     );
@@ -104,10 +206,12 @@ class CartWidget extends StatelessWidget {
                     child: Row(
                       children: [
                         MaterialButton(
-                          onPressed: () {
-                            Provider.of<Cart>(context, listen: false)
-                                .remove(product);
-                          },
+                          onPressed: quantity == 1
+                              ? null
+                              : () {
+                                  Provider.of<Cart>(context, listen: false)
+                                      .remove(product);
+                                },
                           shape: const CircleBorder(),
                           child: const Icon(Icons.remove),
                         ),

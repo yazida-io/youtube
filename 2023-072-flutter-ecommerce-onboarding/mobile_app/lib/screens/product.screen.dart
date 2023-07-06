@@ -26,7 +26,7 @@ class _ProductScreenState extends State<ProductScreen> {
           floating: true,
           actions: [
             ElevatedButton(
-              onPressed: () => _makeFavorite(product),
+              onPressed: () => Provider.of<Cart>(context, listen: false).toggleFavorite(product),
               style: ElevatedButton.styleFrom(
                 shape: const CircleBorder(),
                 padding: const EdgeInsets.all(10),

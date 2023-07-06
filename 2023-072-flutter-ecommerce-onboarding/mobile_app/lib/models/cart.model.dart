@@ -42,4 +42,43 @@ class Cart extends ChangeNotifier {
 
     notifyListeners();
   }
+
+  removeProduct(Product product) {
+    shoppingCart.removeWhere((element) {
+      var (p, _) = element;
+      return p.code == product.code;
+    });
+    notifyListeners();
+  }
+
+  toggleFavorite(Product product) {
+    final index = shoppingCart.indexWhere((element) {
+      var (p, _) = element;
+      return p.code == product.code;
+    });
+
+    if (index >= 0) {
+      var (p, q) = shoppingCart[index];
+      p.favorite = !p.favorite;
+      shoppingCart[index] = (p, q + 1);
+    }
+
+    notifyListeners();
+  }
+
+  double get total {
+    var total = 0.0;
+
+    for (var element in shoppingCart) {
+      var (p, q) = element;
+      total += double.parse("${p.price}") * q;
+    }
+
+    return total;
+  }
+
+  void clear() {
+    shoppingCart.clear();
+    notifyListeners();
+  }
 }
