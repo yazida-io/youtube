@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:mobile_app/screens/cart.screen.dart';
 import 'package:mobile_app/screens/home.screen.dart';
 import 'package:mobile_app/screens/onboarding.screen.dart';
+import 'package:mobile_app/screens/profile.screen.dart';
 
 import '../services/auth.service.dart';
 
@@ -19,7 +20,7 @@ class _MainScreenState extends State<MainScreen> {
   final _pages = [
     const HomeScreen(),
     const CartScreen(),
-    const HomeScreen(),
+    const ProfileScreen(),
   ];
 
   @override

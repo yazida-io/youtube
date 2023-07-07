@@ -51,4 +51,10 @@ class AuthService {
     final SharedPreferences preferences = await SharedPreferences.getInstance();
     await preferences.clear();
   }
+
+  static Future<Map<String, dynamic>> getUser() async {
+    final SharedPreferences preferences = await SharedPreferences.getInstance();
+    var user = preferences.getString('auth:user');
+    return Future.value(jsonDecode(user!));
+  }
 }
