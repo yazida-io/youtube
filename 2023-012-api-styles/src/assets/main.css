@@ -1,0 +1,16 @@
+@import "./base.css";
+
+body {
+  background-color: #2b1c1c;
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+h1 {
+  color: rgb(127, 111, 137);
+  text-align: center;
+  font-size: 50px;
+  text-transform: uppercase;
+}

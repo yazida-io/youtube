@@ -1,0 +1,103 @@
+<template>
+  <!-- <h1>Computed Properties</h1> -->
+  <div class="search">
+    <input type="search" placeholder="type something..." v-model="input" />
+  </div>
+
+  <div class="results">
+    <button @click="toggleResult">toggle</button>
+    <p v-if="show"><strong>Search results:</strong> {{ totalUsers }}</p>
+  </div>
+
+  <div>
+    <table>
+      <tr>
+        <th>Name</th>
+        <th>Username</th>
+        <th>Email</th>
+        <th>Phone</th>
+        <th>Website</th>
+      </tr>
+      <tr v-for="user of users" :key="user.id">
+        <td>{{ user.name }}</td>
+        <td>{{ user.username }}</td>
+        <td>{{ user.email }}</td>
+        <td>{{ user.phone }}</td>
+        <td>{{ user.website }}</td>
+      </tr>
+    </table>
+  </div>
+</template>
+
+<script setup>
+import { ref, watch, computed } from "vue";
+
+const input = ref("");
+const users = ref([]);
+const show = ref(true);
+
+const toggleResult = () => {
+  show.value = !show.value;
+};
+
+watch(
+  input,
+  (value) => {
+    fetch("https://jsonplaceholder.typicode.com/users")
+      .then((response) => response.json())
+      .then((json) => {
+        users.value = json.filter((user) => {
+          return user.name.toLowerCase().includes(value.toLowerCase());
+        });
+      });
+  },
+  { immediate: true }
+);
+
+const totalUsers = computed(() => users.value.length);
+
+</script>
+
+<style scoped>
+input {
+  border-radius: 0;
+  padding: 0.5rem;
+  width: 100%;
+  border: none;
+  border-bottom: 2px solid #6b1f89;
+  background-color: #f5f5f556;
+  color: #6b1f89;
+}
+
+.search {
+  margin-bottom: 1rem;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th,
+td {
+  text-align: left;
+  padding: 8px;
+  border: 2px solid #ddd;
+}
+th {
+  background-color: #a77cb7a4;
+  color: white;
+}
+
+::placeholder {
+  color: #8742a2;
+}
+
+.results {
+  margin-bottom: 1rem;
+  border: 2px solid #ddd;
+  padding: 0.5rem;
+  width: 100%;
+  max-width: 700px;
+}
+</style>
